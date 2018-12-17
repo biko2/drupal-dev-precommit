@@ -14,7 +14,7 @@ Este hook de git (pre-commit) nos revisará los ficheros que se han añadido al 
 | php_codesniffer | composer require "squizlabs/php_codesniffer=*" |
 | drupal/coder | composer require drupal/coder |
 | phpcodesniffer | composer require dealerdirect/phpcodesniffer-composer-installer |
-| phpmd | composer require phpmd/phpmd] |
+| phpmd | composer require phpmd/phpmd |
 
 ### Configure
     php vendor/bin/phpcs --config-set installed_paths vendor/drupal/coder/coder_sniffer
