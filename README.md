@@ -2,6 +2,12 @@
 
 # Drupal Dev Precommit
 
+Este hook de git (pre-commit) nos revisará los ficheros que se han añadido al commit que cumplan con este patrón:
+- *.php
+- *.theme
+- *.module
+- _Están ignorados todos los ficheros que se encuentran en las carpetas "vendor" y "contrib"_
+
 ### Install
 | Plugin | Command |
 | ------ | ------ |
