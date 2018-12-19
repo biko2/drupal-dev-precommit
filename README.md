@@ -9,6 +9,14 @@ Este hook de git (pre-commit) nos revisará los ficheros que se han añadido al 
 - _Están ignorados todos los ficheros que se encuentran en las carpetas "vendor" y "contrib"_
 
 ### Install
+
+Descargar fichero pre-commit en la carpeta de tu proyecto "private/git_hooks".
+Esta carpeta puede cambiar según el proyecto (acquia, pantheon, custom)
+
+Hacer executable el fichero pre-commit (chmod)
+
+    chmod +x pre-commit
+
 | Plugin | Command |
 | ------ | ------ |
 | php_codesniffer | composer require "squizlabs/php_codesniffer=*" |
@@ -21,4 +29,4 @@ Este hook de git (pre-commit) nos revisará los ficheros que se han añadido al 
 
 ### Activate
     cd .git/hooks
-    ln -s ../../git_hooks/pre-commit pre-commit
+    ln -s ../../private/git_hooks/pre-commit pre-commit
