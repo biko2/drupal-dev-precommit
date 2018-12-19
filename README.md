@@ -9,7 +9,7 @@ Este hook de git (pre-commit) nos revisará los ficheros que se han añadido al 
 - _Están ignorados todos los ficheros que se encuentran en las carpetas "vendor" y "contrib"_
 
 #### Nota importante con la librería phpmd (mess detector):
-En algunos fichero de drupal se necesita utilizar variables con barras bajas (_), por ejemplo: $form_state
+En algunos ficheros de drupal se necesita utilizar variables con barras bajas (_), por ejemplo: $form_state
 
 En estas ocasiones lo recomendable es poner en el comentario del fichero: "@SuppressWarnings(PHPMD)"
 
