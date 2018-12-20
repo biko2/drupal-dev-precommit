@@ -11,6 +11,7 @@ Este hook de git (pre-commit) nos revisará los ficheros que se han añadido al 
 ### Install
 
 Descargar fichero pre-commit en la carpeta de tu proyecto "private/git_hooks".
+
 Esta carpeta puede cambiar según el proyecto (acquia, pantheon, custom)
 
 Hacer executable el fichero pre-commit (chmod)
@@ -29,6 +30,7 @@ Hacer executable el fichero pre-commit (chmod)
 
 #### Configuración de PHPMD (PHP Mess Detector):
 El fichero "phpmd.xml" define las reglas para analizar.
+
 En el fichero "pre-commit" está configurada la ruta "private/git_hooks/phpmd.xml" (adaptar si es necesario)
 
 ### Activate
