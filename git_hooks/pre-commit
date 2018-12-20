@@ -150,7 +150,7 @@ class CodeQualityTool extends Application {
           'vendor/bin/phpmd',
           $file,
           'text',
-          'controversial',
+          'private/git_hooks/phpmd.xml',
         ]
       );
       $processBuilder->setWorkingDirectory(__DIR__ . '/../../');

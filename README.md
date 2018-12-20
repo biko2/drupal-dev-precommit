@@ -8,17 +8,6 @@ Este hook de git (pre-commit) nos revisará los ficheros que se han añadido al 
 - *.module
 - _Están ignorados todos los ficheros que se encuentran en las carpetas "vendor" y "contrib"_
 
-#### Nota importante con la librería phpmd (mess detector):
-En algunos ficheros de drupal se necesita utilizar variables con barras bajas (_), por ejemplo: $form_state
-
-En estas ocasiones lo recomendable es poner en el comentario del fichero: "@SuppressWarnings(PHPMD)"
-
-    /**
-     * Ejemplo para ignorar phpmd en este fichero
-     *
-     * @SuppressWarnings(PHPMD)
-     */
-
 ### Install
 
 Descargar fichero pre-commit en la carpeta de tu proyecto "private/git_hooks".
@@ -37,6 +26,10 @@ Hacer executable el fichero pre-commit (chmod)
 
 ### Configure
     php vendor/bin/phpcs --config-set installed_paths vendor/drupal/coder/coder_sniffer
+
+#### Configuración de PHPMD (PHP Mess Detector):
+El fichero "phpmd.xml" define las reglas para analizar.
+En el fichero "pre-commit" está configurada la ruta "private/git_hooks/phpmd.xml" (adaptar si es necesario)
 
 ### Activate
     cd .git/hooks
