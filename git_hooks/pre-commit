@@ -443,6 +443,9 @@ class CodeQualityTool extends Application {
     elseif (preg_match('/contrib/', $file)) {
       return TRUE;
     }
+    elseif (preg_match('/core/', $file)) {
+      return TRUE;
+    }
     else {
       return FALSE;
     }
