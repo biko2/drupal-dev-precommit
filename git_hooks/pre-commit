@@ -36,10 +36,10 @@ class CodeQualityTool extends Application {
       throw new Exception('There are some PHP syntax errors!');
     }
 
-    /*$output->writeln('<info>Checking code style</info>');
-    if (!$this->codeStyle($files)) {
-        throw new Exception(sprintf('There are coding standards violations!'));
-    }*/
+    $output->writeln('<info>Running JS Prettier && Lint</info>');
+    if (!$this->esLint($files)) {
+      throw new Exception('There are some JS syntax errors!');
+    }
 
     $output->writeln('<info>Checking code style with PHPCBF</info>');
     if (!$this->codeStyleCbf($files)) {
@@ -376,31 +376,50 @@ class CodeQualityTool extends Application {
 
 
   private function esLint($files) {
-    $needle = '/app\/Resources\/(.*)(\.js)$/';
+    $succeed = TRUE;
+    $needle = '/\.js$/';
 
-    $esLintFiles = array_filter(
-      $files,
-      function ($file) use ($needle) {
-        return preg_match($needle, $file);
+    foreach ($files as $file) {
+      if (!preg_match($needle, $file)) {
+        continue;
       }
-    );
 
-    $processBuilder = new ProcessBuilder(
-      array_merge([
-        './node_modules/.bin/eslint',
-        '-c',
-        '.eslintrc.yml',
-      ], $esLintFiles)
-    );
-    $processBuilder->setWorkingDirectory(__DIR__ . '/../../');
-    $eSLint = $processBuilder->getProcess();
-    $eSLint->run();
+      if ($this->checkJsFileLocation($file)) {
+        continue;
+      }
 
-    if (!$eSLint->isSuccessful()) {
-      $this->output->write($eSLint->getOutput());
+      $processBuilder = new ProcessBuilder(
+        array_merge([
+          './node_modules/.bin/prettier',
+          '-c',
+          './web/core/.prettierrc.json',
+          '--write',
+        ], [$file])
+      );
+      $processBuilder->setWorkingDirectory(__DIR__ . '/../../');
+      $eSLint = $processBuilder->getProcess();
+      $eSLint->run();
+
+      $processBuilder = new ProcessBuilder(
+        array_merge([
+          './node_modules/.bin/eslint',
+          '-c',
+          './web/core/.eslintrc.json',
+        ], [$file])
+      );
+      $processBuilder->setWorkingDirectory(__DIR__ . '/../../');
+      $eSLint = $processBuilder->getProcess();
+      $eSLint->run();
+
+      if (!$eSLint->isSuccessful()) {
+        $this->output->write($eSLint->getOutput());
+        if ($succeed) {
+          $succeed = FALSE;
+        }
+      }
     }
 
-    return $eSLint->isSuccessful();
+    return $succeed;
   }
 
   private function styleLint($files) {
