@@ -1,4 +1,4 @@
-[![Biko2](https://www.biko2.com/wp-content/uploads/web/logo.png)](https://www.biko2.com)
+[![by Biko2](https://raw.githubusercontent.com/biko2/biko-repo-bagdes/master/png/biko-bagge-pill.png)](https://www.biko2.com)
 
 # Drupal Dev Precommit
 
